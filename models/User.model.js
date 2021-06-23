@@ -3,6 +3,12 @@ const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\"
 
 const userSchema = new mongoose.Schema(
   {
+    username: {
+      type: String,
+      trim: true,
+      required: [true, 'Username is required'],
+      unique: true
+    },
     email: {
       type: String,
       required: [true, 'Email is required'],
