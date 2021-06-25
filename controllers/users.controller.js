@@ -7,11 +7,11 @@ module.exports.index = (req, res, next) => {
     })
 }
 
-module.exports.new = (req, res, next) => {
-  res.render('new');
+module.exports.register = (req, res, next) => {
+  res.render('register');
 }
 
-module.exports.create = (req, res, next) => {
+module.exports.doRegister = (req, res, next) => {
   User.create(req.body)
     .then(() => {
       res.redirect('/')
