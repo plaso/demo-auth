@@ -16,14 +16,14 @@ module.exports = app => {
       cookie: {
         sameSite: 'lax',
         httpOnly: true,
-        maxAge: process.env.SESSION_MAX_AGE || 60 * 60 * 24
+        maxAge: 1000 * 60 * 60 * 24
       },
       store: MongoStore.create({
         // <== ADDED !!!
         mongoUrl: process.env.MONGODB_URI || `${URI}/${DB_NAME}`,
  
         // ttl => time to live
-        // ttl: process.env.SESSION_MAX_AGE || 60 * 60 * 24 // 60sec * 60min * 24h => 1 day
+        ttl: 1000 * 60 * 60 * 24 // 1000ms * 60sec * 60min * 24h => 1 day
       })
     })
   );

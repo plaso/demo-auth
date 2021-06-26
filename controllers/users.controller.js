@@ -52,7 +52,7 @@ module.exports.doLogin = (req, res, next) => {
             if (match) {
               console.log('hello???')
               req.session.currentUser = user;
-              res.redirect('/')
+              res.redirect('/profile')
             } else {
               res.render('login', { errorMessage: 'Email or password incorrect', user: {
                 email: req.body.email
@@ -62,4 +62,13 @@ module.exports.doLogin = (req, res, next) => {
       }
     })
     .catch(e => next(e))
+}
+
+module.exports.profile = (req, res, next) => {
+  res.render('profile')
+}
+
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  res.redirect('/');
 }
