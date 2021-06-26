@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express');
 const logger = require('morgan');
 const hbs = require("hbs");
@@ -7,6 +9,8 @@ const createError = require("http-errors");
 require("./config/db.config");
 
 const app = express();
+
+require('./config/session.config')(app);
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));

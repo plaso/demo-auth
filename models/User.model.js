@@ -6,12 +6,6 @@ const SALT_ROUNDS = 10;
 
 const userSchema = new mongoose.Schema(
   {
-    username: {
-      type: String,
-      trim: true,
-      required: [true, 'Username is required'],
-      unique: true
-    },
     email: {
       type: String,
       required: [true, 'Email is required'],
@@ -41,6 +35,10 @@ userSchema.pre("save", function (next) {
     next();
   }
 });
+
+userSchema.methods.checkPassword = function (passwordToCheck) {
+  return bcrypt.compare(passwordToCheck, this.password);
+};
 
 const User = mongoose.model('User', userSchema);
 
